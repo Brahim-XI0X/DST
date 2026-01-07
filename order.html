@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order | DST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styleo.css">
+</head>
+<body>
+
+<header class="header"></header>
+
+<section class="order-section">
+
+  <!-- LOGO -->
+  <img src="logo.png" alt="DST" style="width:120px;margin-bottom:20px;">
+
+  <h1>Place Your Order</h1>
+
+  <form id="orderForm">
+
+    <input type="text" id="name" placeholder="Your Name" required>
+
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+
+    <select id="service" required>
+      <option value="">Select Service</option>
+      <option value="Google Ads">Google Ads</option>
+      <option value="Facebook Ads">Facebook Ads</option>
+      <option value="Hosting / VPS">Hosting / VPS</option>
+      <option value="Virtual Card">Virtual Card</option>
+      <option value="Gift Card">Gift Card</option>
+      <option value="Gift Card">Crypto</option>
+      <option value="Gift Card">Create Virtual Card</option>
+      <option value="Gift Card">autre</option>
+    </select>
+
+    <input type="number" id="usd" placeholder="Amount in USD" min="1" required>
+
+    <p class="total">
+      Total: <span id="total">0</span> DT
+    </p>
+
+    <button type="submit">Send Order</button>
+
+  </form>
+</section>
+
+<!-- JS -->
+<script>
+const rate = 3.45;
+
+const form = document.getElementById("orderForm");
+const usd = document.getElementById("usd");
+const total = document.getElementById("total");
+
+usd.addEventListener("input", () => {
+  const value = parseFloat(usd.value);
+  total.innerText = value ? (value * rate).toFixed(2) : "0";
+});
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = new FormData();
+  data.append("name", document.getElementById("name").value);
+  data.append("phone", document.getElementById("phone").value);
+  data.append("service", document.getElementById("service").value);
+  data.append("usd", usd.value);
+  data.append("total", total.innerText);
+
+  fetch("api/add_order.php", {
+    method: "POST",
+    body: data
+  })
+  .then(res => res.text())
+  .then(() => {
+    alert("Order sent successfully ✅");
+    form.reset();
+    total.innerText = "0";
+  })
+  .catch(() => {
+    alert("Error ❌");
+  });
+});
+</script>
+
+</body>
+</html>
