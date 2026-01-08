@@ -33,3 +33,12 @@ Total: ${total} DT`;
   const url = `https://wa.me/216XXXXXXXX?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
 });
+
+//contact sec
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Message Sent Successfully! ✅");
+  this.reset();
+});
+

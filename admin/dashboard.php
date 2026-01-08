@@ -74,6 +74,35 @@ $result = $conn->query("SELECT * FROM orders ORDER BY id DESC");
 
 </table>
 
+<?php
+$result = $conn->query("SELECT * FROM contact ORDER BY id DESC");
+?>
+
+<h2>Contact Messages</h2>
+<table border="1" cellpadding="10">
+<tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>Email</th>
+  <th>Phone</th>
+  <th>Message</th>
+  <th>Date</th>
+</tr>
+
+<?php while($row = $result->fetch_assoc()) { ?>
+<tr>
+  <td><?php echo $row['id']; ?></td>
+  <td><?php echo $row['fullname']; ?></td>
+  <td><?php echo $row['email']; ?></td>
+  <td><?php echo $row['phone']; ?></td>
+  <td><?php echo $row['message']; ?></td>
+  <td><?php echo $row['created_at']; ?></td>
+</tr>
+<?php } ?>
+
+</table>
+
+
 <style>
     body {
       font-family: Arial, sans-serif;
@@ -131,7 +160,9 @@ $result = $conn->query("SELECT * FROM orders ORDER BY id DESC");
       background: #F28C28;
     }
 </style>
-/* refrech  */
+
+
+
 
 <script>
 function changeStatus(id) {
