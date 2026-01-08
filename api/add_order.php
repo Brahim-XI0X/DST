@@ -1,58 +1,72 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: text/plain");
+include "../config/db.php";
 
-include __DIR__ . '/../config/db.php';
+// Save in DB
+$name   = $_POST["name"];
+$phone  = $_POST["phone"];
+$service= $_POST["service"];
+$usd    = $_POST["usd"];
+$total  = $_POST["total"];
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+$sql = "INSERT INTO orders (name, phone, service, usd, total) 
+VALUES ('$name', '$phone', '$service', '$usd', '$total')";
 
-    $name = $_POST["name"] ?? '';
-    $phone = $_POST["phone"] ?? '';
-    $service = $_POST["service"] ?? '';
-    $usd = $_POST["usd"] ?? 0;
-    $total = $_POST["total"] ?? 0;
+$conn->query($sql);
 
-    if ($name === '' || $phone === '' || $service === '' || !$usd) {
-        echo "Missing fields";
-        exit;
-    }
 
-    $stmt = $conn->prepare("INSERT INTO orders (name, phone, service, usd, total) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssdd", $name, $phone, $service, $usd, $total);
+// ---------------- EMAIL ----------------
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    if ($stmt->execute()) {
-        $clientPhone = $phone; // رقم العميل من الفورم
+require "../PHPMailer/src/Exception.php";
+require "../PHPMailer/src/PHPMailer.php";
+require "../PHPMailer/src/SMTP.php";
 
-// حذف أي مسافات
-$clientPhone = str_replace(" ", "", $clientPhone);
+$mail = new PHPMailer(true);
 
-// تحويله لرقم دولي تونسي إذا كتب 2xxxxxxxx
-if(strlen($clientPhone) == 8){
-   $clientPhone = "216" . $clientPhone;
+try {
+
+    // SMTP
+    $mail->isSMTP();
+    $mail->Host       = "smtp.gmail.com";
+    $mail->SMTPAuth   = true;
+
+    // ⚠️ عدّل بهذه المعلومات
+    $mail->Username   = "ibrahimbdhiafi47@gmail.com";
+    $mail->Password   = "mvar ioph tsft njtm";
+
+    $mail->SMTPSecure = "tls";
+    $mail->Port       = 587;
+
+    // Sender
+    $mail->setFrom("ibrahimbdhiafi47@gmail.com", "DST Tunisia");
+
+    // Receiver (Client)
+    $mail->addAddress($_POST["email"]);
+
+    $mail->isHTML(true);
+    $mail->Subject = "Your Order Confirmation - DST";
+
+    $mail->Body = "
+    <h2>Hello $name 👋</h2>
+    <p>Thank you for your order.</p>
+
+    <b>Order Details:</b><br>
+    Service: $service <br>
+    Amount: $usd USD <br>
+    Total: $total DT <br><br>
+
+    <p>We will contact you soon.</p>
+    <p>Regards,<br>DST Tunisia Team</p>
+    ";
+
+    $mail->send();
+
+} catch (Exception $e) {
+    // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 
-$message = urlencode("
-مرحبا $name 👋
-تم استلام طلبك في Digital Services Tunisia (DST)
+echo "DONE";
 
-الخدمة: $service
-المبلغ بالدولار: $usd$
-المجموع: $total DT
-
-سوف نتواصل معك قريبا ❤️
-شكرا لاختيارك DST
-");
-
-$apiKey = "YOUR_API_KEY_HERE";
-
-file_get_contents("https://api.callmebot.com/whatsapp.php?phone=$clientPhone&text=$message&apikey=$apiKey");
-
-        echo "OK";
-    } else {
-        echo "ERROR";
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-?>
