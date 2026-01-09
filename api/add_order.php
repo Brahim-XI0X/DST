@@ -32,9 +32,9 @@ try {
     $mail->SMTPSecure = "tls";
     $mail->Port       = 587;
 
-    $mail->setFrom("YOUR_EMAIL@gmail.com", "DST Tunisia");
+    $mail->setFrom("ibrahimbdhiafi47@gmail.com", "DST Tunisia");
     $mail->addAddress($email);
-    $mail->addReplyTo("YOUR_EMAIL@gmail.com", "DST Support");
+    $mail->addReplyTo("ibrahimbdhiafi47@gmail.com", "DST Support");
     $mail->CharSet = "UTF-8";
     $mail->isHTML(true);
 
