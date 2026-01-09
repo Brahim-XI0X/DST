@@ -585,6 +585,7 @@ footer {
 
   .header h2{
     font-size:22px;
+    margin: auto;
   }
 
   nav{
@@ -593,7 +594,7 @@ footer {
 
   /* HERO */
   .hero{
-    height:auto;
+    height:700px;
     padding:50px 20px;
     text-align:center;
     justify-content:center;
@@ -615,6 +616,7 @@ footer {
 
   .hero p{
     font-size:16px;
+    text-align: center;
   }
 
 
@@ -622,7 +624,7 @@ footer {
   .cards{
     display:flex;
     flex-direction:column;
-    gap:40px;
+    gap: 40px;
   }
 
   .card{
