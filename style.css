@@ -24,7 +24,11 @@ html{
 .header h2{
   color: #F28C28;
 }
-
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 nav a {
   color: #fff;
@@ -109,6 +113,7 @@ nav a:hover {
 }
 
 
+
 /* SERVICES */
 .services {
   width: auto;
@@ -126,7 +131,6 @@ nav a:hover {
   font-size: 32px;
 }
 /* vertual card*/ 
-/* From Uiverse.io by CodeM7710 */ 
 .main-container {
   font-family: "Trebuchet MS", sans-serif;
   position: relative;
@@ -423,6 +427,171 @@ nav a:hover {
   margin-top:20px;
   color:#1E1E1E;
 }
+/* pricing sec */
+.pricing{
+  padding:80px 20px;
+  text-align:center;
+  background:#0b0b0b;
+  color:white;
+}
+
+.pricing h2{
+  font-size:2.5rem;
+  color: #F28C28;
+}
+
+.pricing-sub{
+  opacity:.7;
+  margin-bottom:40px;
+}
+
+.pricing-box{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+.price-card{
+  background:#111;
+  padding:30px;
+  width:300px;
+  border-radius:15px;
+  border:1px solid #222;
+  transition:.3s;
+}
+
+.price-card:hover{
+  transform:scale(1.05);
+  border-color:#F28C28;
+}
+
+.price{
+  font-size:2rem;
+  color:#F28C28;
+}
+
+.price-card ul{
+  list-style:none;
+  padding:0;
+  margin:20px 0;
+}
+
+.price-card li{
+  margin:10px 0;
+}
+
+.pbtn{
+  display:inline-block;
+  background:#F28C28;
+  color:#000;
+  padding:10px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.popular{
+  border:2px solid #F28C28;
+  position:relative;
+}
+
+.tag{
+  background:#F28C28;
+  color:#000;
+  padding:5px 10px;
+  position:absolute;
+  top:-12px;
+  right:10px;
+  border-radius:6px;
+}
+/* ---------------- TESTIMONIALS ---------------- */
+.testimonials{
+  padding:70px 20px;
+  text-align:center;
+}
+.testimonials h2{
+  font-size:32px;
+  margin-bottom:30px;
+  color: #F28C28;
+}
+
+.testi-box{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.testi-card{
+  width:280px;
+  background:#111;
+  color:white;
+  padding:20px;
+  border-radius:15px;
+  transition:.3s;
+  border:1px solid #333;
+  animation:fadeUp .7s ease;
+}
+
+.testi-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 25px #F28C28;
+}
+
+.testi-card img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  margin-bottom:10px;
+}
+
+/* ---------------- TRUST BADGES ---------------- */
+.trust{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.trust-box{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.badge{
+  background:#0c0c0c;
+  padding:12px 22px;
+  border-radius:30px;
+  border:1px solid #F28C28;
+  color:white;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.badge:hover{
+  background:#F28C28;
+  color:black;
+}
+
+/* ---------------- GLOBAL ANIMATION ---------------- */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* ---------------- MOBILE RESPONSIVE ---------------- */
+@media (max-width:768px){
+
+.hero-content h1{font-size:26px;}
+.hero-content p{font-size:14px;}
+
+.cards{flex-direction:column; align-items:center;}
+.price-card{width:90%;}
+.testi-card{width:90%;}
+.trust-box{flex-direction:column;}
+}
+
 /* contact sec */
 .contact-section{
   background-color: #1E1E1E;

@@ -1,5 +1,5 @@
 function goOrder() {
-  alert("Order page coming soon 🚀");
+
 }
 
 
@@ -41,4 +41,14 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   alert("Message Sent Successfully! ✅");
   this.reset();
 });
-
+//rate sec
+document.getElementById("starBtn").onclick = ()=>{
+  fetch("admin/rate.php")
+  .then(res=>res.text())
+  .then(total=>{
+     document.getElementById("count").innerHTML = total;
+  })
+}
+fetch("admin/get_count.php")
+.then(r=>r.text())
+.then(t=> document.getElementById("count").innerHTML=t);
