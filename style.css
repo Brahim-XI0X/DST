@@ -119,16 +119,17 @@ nav a:hover {
   width: auto;
   height: auto;
   padding: 60px 40px;
-  background: #fff;
+  background: #F28C28;
   display: flex;
   flex-direction: column;
-  gap: 190px;
+  gap: 19px;
 }
 
 .services h2 {
   text-align: center;
   margin-bottom: 40px;
   font-size: 32px;
+  color: #FAF7F2;
 }
 /* vertual card*/ 
 .main-container {
@@ -654,7 +655,64 @@ nav a:hover {
 
 
 /* FOOTER */
-/* From Uiverse.io by roajuan93 */ 
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+  padding: 20px 30px;
+  border-radius: 16px;
+  width: fit-content;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  margin: auto;
+  transition: 1s;
+  
+}
+.rate-box{
+  background: #0f172a;
+  padding: 20px 30px;
+  border-radius: 16px;
+  width: fit-content;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: 1s;
+  
+}
+.box:hover{
+  box-shadow: 0px 0px 20px #F28C28
+}
+.rate-box:hover{
+  box-shadow: 0px 0px 20px gold
+}
+
+.rate-box h3 {
+  color: #F28C28;
+  margin-bottom: 10px;
+  font-size: 22px;
+  
+}
+
+.stars {
+  font-size: 35px;
+  cursor: pointer;
+  color: #334155;
+  transition: color 0.3s;
+}
+
+.stars:hover {
+  color: gold;
+}
+
+.rate-count {
+  margin-top: 10px;
+  color: #F28C28;
+  font-size: 14px;
+}
+
 .card {
   width: fit-content;
   height: fit-content;
@@ -664,7 +722,7 @@ nav a:hover {
   justify-content: center;
   padding: 25px 25px;
   gap: 20px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
+  box-shadow: 0px 0px 20px #F28C28;
 }
 
 /* for all social containers*/
